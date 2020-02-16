@@ -1,0 +1,24 @@
+# Contributor: Adam Saponara <as@php.net>
+# Maintainer:
+pkgname="termbox"
+pkgver="1.1.2"
+pkgrel=0
+pkgdesc="Legacy-free alternative to ncurses"
+url="https://github.com/nsf/termbox"
+arch="all"
+license="MIT"
+makedepends="python"
+subpackages="$pkgname-static $pkgname-dev"
+source="$pkgname-$pkgver.tar.gz::https://github.com/nsf/$pkgname/archive/v$pkgver.tar.gz"
+
+build() {
+	./waf configure --prefix=/usr
+	./waf build --verbose
+}
+
+package() {
+	./waf install --destdir="${pkgdir}"
+}
+
+
+sha512sums="fcb240e9aa480a0cc738f0d01e60c39ef0f333f434c0d1f2d276d3d75edd351e694fd800e0b8dbadd12be686a4261551d10d475933197ef539cdb4dd70c153cb  termbox-1.1.2.tar.gz"
